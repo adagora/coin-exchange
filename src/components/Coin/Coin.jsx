@@ -7,8 +7,7 @@ import styled from 'styled-components';
 const Td = styled.td`
     border: 1px solid #cccccc;
     width: 25vh;
-
-`;
+    `;
 
 export default class Coin extends Component {
     constructor(props) {
