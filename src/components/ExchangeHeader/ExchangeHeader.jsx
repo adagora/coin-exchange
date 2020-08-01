@@ -21,7 +21,7 @@ const H1 = styled.h1`
         font-size: 4rem;
  `;
 
-export default class Header extends Component {
+export default class ExchangeHeader extends Component {
     render() {
         return (
             <Header>

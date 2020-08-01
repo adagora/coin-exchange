@@ -1,6 +1,6 @@
 import React from 'react';
 import CoinList from './components/CoinList/CoinList';
-import Header from './components/Header/Header';
+import ExchangeHeader from './components/ExchangeHeader/ExchangeHeader';
 import AccountBalance from './components/AccountBalance/AccountBalance.jsx';
 import styled from 'styled-components';
 
@@ -62,7 +62,7 @@ class App extends React.Component {
   render() {
     return (
       <Div className="App">
-        <Header />
+        <ExchangeHeader />
         <AccountBalance amount={this.state.balance} />
         <CoinList coinData={this.state.coinData} handleRefresh={this.handleRefresh} />
       </Div>
