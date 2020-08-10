@@ -12,9 +12,7 @@ const Div = styled.div`
 `; 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       balance: 10000,
       showBalance: true,
       coinData: [
@@ -44,11 +42,8 @@ class App extends React.Component {
         },
       ]
     }
-    this.handleRefresh = this.handleRefresh.bind(this);
-    this.handleBalanceVisibilityChange = this.handleBalanceVisibilityChange.bind(this);
-  }
   
-  handleBalanceVisibilityChange(){
+  handleBalanceVisibilityChange = () => {
     this.setState( function(oldState) {
       return {
         ...oldState,
@@ -58,20 +53,14 @@ class App extends React.Component {
 
   }
   // passing down this event Handler as props and calling event Handler in child component and passing information back to the parent
-  handleRefresh(valueChangeTicker) {
-    const newCoinData = this.state.coinData.map(function( {ticker, name, price, balance} ) {
-      let newPrice = price;
-      if ( valueChangeTicker === ticker ) {
+  handleRefresh = (valueChangeTicker) => {
+    const newCoinData = this.state.coinData.map(function( {values} ) {
+      let newValues = {...values};
+      if ( valueChangeTicker === values.ticker ) {
         const randomPercentage = 0.995 + Math.random() * 0.01;
-        newPrice= newPrice * randomPercentage;
+        newValues.price *= randomPercentage;
         }
-        return {
-          ticker,
-          name,
-          price: newPrice,
-          balance
-  
-        }
+        return newValues;
     });
 
       this.setState({ coinData: newCoinData });

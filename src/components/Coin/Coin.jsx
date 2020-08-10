@@ -10,13 +10,8 @@ const Td = styled.td`
     `;
 
 export default class Coin extends Component {
-    constructor(props) {
-        super(props);
-        //access to the props inside handleClick
-        this.handleClick = this.handleClick.bind(this);
-    }
 
-   handleClick(event) {
+   handleClick = (event) => {
        //Prevent the default action of submitting the form
        event.preventDefault();
 
