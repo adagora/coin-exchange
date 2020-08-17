@@ -12,41 +12,15 @@ const Div = styled.div`
 
 `; 
 
-const COIN_COUNT = 15;
+const COIN_COUNT = 10;
 const formatPrice = price => parseFloat(Number(price).toFixed(3));
+
 
 class App extends React.Component {
   state = {
       balance: 10000,
       showBalance: true,
-      coinData: [
-      /*
-        {
-          name: 'Bitcoin',
-          ticker: 'BTC',
-          price: 9999.99,
-          balance: 1
-        },
-        {
-          name: 'Ethereum',
-          ticker: 'ETH',
-          price: 300,
-          balance: 3
-        },
-        {
-          name: 'Tether',
-          ticker: 'USDT',
-          price: 1.0,
-          balance: 0.5
-        },
-        {
-          name: 'Cardano',
-          ticker: 'ADA',
-          price: 0.14,
-          balance: 10000
-        },
-        */
-      ]
+      coinData: []
     }
   
   componentDidMount = async () => {
@@ -64,7 +38,7 @@ class App extends React.Component {
         balance: 0,
         price: formatPrice(coin.quotes.USD.price),
       };
-    })
+    });
     //Retrieve the prices
     this.setState({ coinData: coinPriceData });
   }
@@ -82,11 +56,12 @@ class App extends React.Component {
   handleRefresh = async (valueChangeId) => {
     const tickerUrl = `https://api.coinpaprika.com/v1/tickers/${valueChangeId}`;
     const response = await axios.get(tickerUrl);
+    debugger;
     const newPrice = formatPrice(response.data.quotes.USD.price);
-    const newCoinData = this.state.coinData.map(function( {values} ) {
+    const newCoinData = this.state.coinData.map(function( values ) {
       let newValues = {...values};
       if ( valueChangeId === values.key ) {
-        newValues.price *= newPrice;
+        newValues.price = newPrice;
         }
         return newValues;
     });
