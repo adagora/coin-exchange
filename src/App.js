@@ -5,6 +5,10 @@ import AccountBalance from './components/AccountBalance/AccountBalance.jsx';
 import styled from 'styled-components';
 import axios from 'axios';
 
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootswatch/dist/flatly/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/js/all';
+
 const Div = styled.div`
       text-align: center;
       background-color: rgb(48, 48, 92);
@@ -17,7 +21,7 @@ const formatPrice = price => parseFloat(Number(price).toFixed(3));
 
 export default function App(props) {
   const [balance, setBalance] = useState(1000);
-  const [showBalance, setShowBalance] = useState(true);
+  const [showBalance, setShowBalance] = useState(false);
   const [coinData, setCoinData] = useState([]);
   
 
