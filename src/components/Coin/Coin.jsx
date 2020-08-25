@@ -2,20 +2,25 @@ import React from 'react'
 import propTypes from 'prop-types';
 import styled from 'styled-components';
 
-
-
 const Td = styled.td`
     border: 1px solid #cccccc;
-    width: 25vh;
-    `;
+    width: 22vh;
+`;
+
+const TdControls = styled(Td)`
+    width: 36 vw;
+`;
+const Button = styled.button`
+    font-size: 11px;
+    width: 64px;
+    margin: 3px 5px 0;
+`;
 
 export default function Coin(props) {
 
-   const handleClick = (event) => {
+   const handleRefresh = (event) => {
        //Prevent the default action of submitting the form
        event.preventDefault();
-
-        //submitting (this.props.ticker) to the parent to find value
        props.handleRefresh(props.tickerId);
    }
         return (
@@ -24,11 +29,13 @@ export default function Coin(props) {
                <Td>{props.ticker}</Td>
                <Td>${props.price}</Td>
                {props.showBalance ? <Td>{props.balance}</Td> : null}
-               <Td>
+               <TdControls>
                     <form action="#" method="POST">
-                        <button onClick={handleClick}>Refresh</button>
+                        <Button className="btn btn-info" onClick={handleRefresh}>
+                            Refresh
+                        </Button>
                     </form>
-               </Td> 
+               </TdControls> 
            </tr>
         );
     }
