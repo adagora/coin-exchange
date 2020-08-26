@@ -27,7 +27,7 @@ const BalanceToggleButton = styled(Button)`
     width: 150px;
 `;
 
-var formatter = Intl.NumberFormat = ('en-US', {
+var formatter = Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
 });

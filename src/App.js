@@ -11,7 +11,7 @@ import '@fortawesome/fontawesome-free/js/all';
 
 const Div = styled.div`
       text-align: center;
-      background-color: rgb(48, 48, 92);
+      background-color: rgb(255, 255, 255);
       color: #cccccc;
 `; 
 
@@ -52,11 +52,24 @@ export default function App(props) {
   });
 
   const handleBrrr = ()  => {
-    setBalance( oldBalance => oldBalance + 1200);
+    setBalance( oldBalance => oldBalance + 10000);
   }
 
   const handleBalanceVisibilityChange = () => {
     setShowBalance(oldValue => !oldValue);
+  }
+
+  const handleTransaction = (isBuy, valueChangeId) => {
+    var balanceChange = isBuy ? 1 : -1;
+    const newCoinData = coinData.map( function(values) {
+      let newValues = {...values};
+      if ( valueChangeId == values.key) {
+        newValues.balance += balanceChange;
+        setBalance( oldBalance => oldBalance - balanceChange * newValues.price );
+      }
+      return newValues;
+    });
+    setCoinData(newCoinData);
   }
  
   const handleRefresh = async (valueChangeId) => {
@@ -86,6 +99,7 @@ export default function App(props) {
       <CoinList 
         coinData={coinData}
         showBalance={showBalance} 
+        handleTransaction={handleTransaction}
         handleRefresh={handleRefresh} />
     </Div>
   );
